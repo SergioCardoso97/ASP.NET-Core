@@ -1,0 +1,25 @@
+@model Curso
+@{
+    ViewData["Title"] = "Creación de un Curso";
+    Layout = "simple";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="d-flex justify-content-center">
+    <form method="POST" class="col-8">
+        <div class="d-flex flex-column justify-content-center m-2">
+            <label asp-for="Nombre"></label>    
+            <input asp-for="Nombre" type="text" class="form-control">
+            @* @Html.TextBox("Nombre","", new { @class = "form-control",@placeholder = "Ingresa el nombre" }) *@
+        </div>
+        <div class="d-flex flex-column justify-content-center m-2">
+            <label asp-for="Jornada"></label>
+            @Html.DropDownList("Jornada",Html.GetEnumSelectList<TiposJornada>(),
+                "Seleccione una jornada", new {@class = "form-control"})
+        </div>
+        <div class="d-flex justify-content-center m-2">
+            <input class=" btn btn-primary btn-lg" type="submit"/>
+        </div>
+    </form>
+</div>
+<p class="text-center"><i>@ViewData["Fecha"]</i></p>

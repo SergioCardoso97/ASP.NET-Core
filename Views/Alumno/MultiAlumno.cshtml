@@ -1,0 +1,9 @@
+@model List<Alumno>
+@{
+    ViewData["Title"] = "Informacion de todos los Alumnos";
+    Layout = "simple";
+}
+
+<h1>@ViewData["Title"]</h1>
+<partial name="ListaObjetoEscuela"></partial>
+<p><i>@ViewData["Fecha"]</i></p>

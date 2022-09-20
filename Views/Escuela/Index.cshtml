@@ -8,6 +8,12 @@
 {
     <h1>@ViewData["Title"]</h1>
     <h2>Nombre: @Model.Nombre</h2>
-    <p><strong>Año fundacion: @Model.AñoFundacion </strong></p>
+    <h3>Tipo Escuela:  @Model.TipoEscuela</h3>
+    <address>
+        <p>Dirección: @Model.Dirección</p>
+        <p>Ciudad:  @Model.Ciudad</p>
+        <p>País:  @Model.Pais</p>
+    </address>
+    <p><strong>Año fundacion: @Model.AñoDeCreación </strong></p>
     <p><i>@ViewData["CosaDinamica"]</i></p>
 }
