@@ -64,7 +64,7 @@ public class  AsignaturaController: Controller
         }
         else
         {
-            return View(asignatura);
+            return RedirectToAction("Create","Asignatura");
         }
     }
     public IActionResult Update(string id)
@@ -104,7 +104,7 @@ public class  AsignaturaController: Controller
         }
         else
         {
-            return View(asignatura);
+            return RedirectToAction("Update", "Asignatura", new {@id = asignatura.Id});
         }
     }
     public IActionResult Delete(string id)

@@ -5,20 +5,23 @@
 }
 
 <h1 class="text-center">@ViewData["Title"]</h1>
-<div class="d-flex justify-content-center" asp-validation-summary="All">
+<div class="d-flex justify-content-center">
     <form method="POST" class="col-8">
         <div class="d-flex flex-column justify-content-center m-2">
             <label asp-for="Nombre"></label>
             @Html.TextBox("Nombre",@Model.Nombre, new { @class = "form-control",@placeholder = "Ingresa el nombre" })
+            @Html.ValidationMessageFor(model => model.Nombre, "", new { @class = "text-danger" })
         </div>
         <div class="d-flex flex-column justify-content-center m-2">
             <label asp-for="Dirección"></label>
             @Html.TextBox("Dirección",@Model.Dirección, new { @class = "form-control",@placeholder = "Ingresa la direcciön" })
+            @Html.ValidationMessageFor(model => model.Dirección, "", new { @class = "text-danger" })
         </div>
         <div class="d-flex flex-column justify-content-center m-2">
             <label asp-for="Jornada"></label>
             @Html.DropDownList("Jornada",Html.GetEnumSelectList<TiposJornada>(),
                 "Seleccione una jornada", new {@class = "form-control"})
+            @Html.ValidationMessageFor(model => model.Jornada, "", new { @class = "text-danger" })
         </div>
         <div class="d-flex justify-content-center m-5">
             <input class=" btn btn-primary btn-lg mr-5" type="submit" value="Actualizar"/>

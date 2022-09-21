@@ -26,6 +26,7 @@
                 <td class="text-center">@Model[i].Nombre</td>
                 <td class="text-center">
                    @Html.DropDownListFor(x=>x[i].CursoId, (IEnumerable<SelectListItem>)ViewData["Cursos"],new {@class = "btn btn-secondary",@disabled = "disabled",@style = "color: white"})
+                    @Html.ActionLink("Ver curso", "Index", "Curso", new { id = @Model[i].CursoId }, new {@class = "btn btn-primary ml-3"})
                 </td>
                 <td class="text-center">
                     @Html.ActionLink("Editar", "Update", "Asignatura", new { id = @Model[i].Id }, new {@class = "btn btn-primary mr-3"})

@@ -62,7 +62,8 @@ public class  AlumnoController: Controller
         }
         else
         {
-            return View(alumno);
+            //Alert
+           return RedirectToAction("Create","Alumno");
         }
     }
     public IActionResult Update(string id)
@@ -99,12 +100,14 @@ public class  AlumnoController: Controller
             }
             else
             {
-                return View(alumno);
+                //Alert
+                return RedirectToAction("Update", "Asignatura", new {@id = alumno.Id});
             }
         }
         else
         {
-            return View(alumno);
+            //Alert
+            return RedirectToAction("Update", "Asignatura", new {@id = alumno.Id});
         }
     }
     public IActionResult Delete(string id)
