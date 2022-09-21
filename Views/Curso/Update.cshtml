@@ -1,6 +1,6 @@
 @model Curso
 @{
-    ViewData["Title"] = "Creación de un Curso";
+    ViewData["Title"] = "Actualización de un Curso";
     Layout = "simple";
 }
 
@@ -9,11 +9,11 @@
     <form method="POST" class="col-8">
         <div class="d-flex flex-column justify-content-center m-2">
             <label asp-for="Nombre"></label>
-            @Html.TextBox("Nombre",null, new { @class = "form-control",@placeholder = "Ingresa el nombre" })
+            @Html.TextBox("Nombre",@Model.Nombre, new { @class = "form-control",@placeholder = "Ingresa el nombre" })
         </div>
         <div class="d-flex flex-column justify-content-center m-2">
             <label asp-for="Dirección"></label>
-            @Html.TextBox("Dirección",null, new { @class = "form-control",@placeholder = "Ingresa la direcciön" })
+            @Html.TextBox("Dirección",@Model.Dirección, new { @class = "form-control",@placeholder = "Ingresa la direcciön" })
         </div>
         <div class="d-flex flex-column justify-content-center m-2">
             <label asp-for="Jornada"></label>
@@ -21,8 +21,8 @@
                 "Seleccione una jornada", new {@class = "form-control"})
         </div>
         <div class="d-flex justify-content-center m-5">
-            <input class=" btn btn-primary btn-lg mr-5" type="submit" value="Crear"/>
-            @Html.ActionLink("Regresar", "Multicurso", "Curso", null , new {@class = "btn btn-secondary btn-lg"})
+            <input class=" btn btn-primary btn-lg mr-5" type="submit" value="Actualizar"/>
+            @Html.ActionLink("Regresar", "Multicurso", "Curso", null, new {@class = "btn btn-secondary btn-lg"})
         </div>
     </form>
 </div>

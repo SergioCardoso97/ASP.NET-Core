@@ -34,7 +34,6 @@ public class CursoController : Controller
     public IActionResult Create()
     {
         ViewBag.Fecha = DateTime.Now;
-
         return View();
     }
     [HttpPost]
@@ -43,19 +42,60 @@ public class CursoController : Controller
         ViewBag.Fecha = DateTime.Now;
         if (ModelState.IsValid)
         {
-            var escuela = _context.Escuelas.FirstOrDefault();
+            curso.EscuelaId = _context.Escuelas.FirstOrDefault().Id;
             curso.Id = Guid.NewGuid().ToString();
-            curso.EscuelaId = escuela.Id;
             _context.Cursos.Add(curso);
             _context.SaveChanges();
-
-            return View("MultiCurso", _context.Cursos.ToList());
+            return RedirectToAction("MultiCurso","Curso");
         }
         else
         {
             return View(curso);
         }
     }
+    public IActionResult Update(string id)
+    {
+        ViewBag.Fecha = DateTime.Now;
+        var curso = _context.Cursos.Find(id);
+        return View(curso);
+    }
+    [HttpPost]
+    public IActionResult Update(Curso curso)
+    {
+        ViewBag.Fecha = DateTime.Now;
+
+        if (ModelState.IsValid)
+        {
+            var cursoUpdate = (from cur in _context.Cursos
+                            where cur.Id == curso.Id
+                            select cur).SingleOrDefault();
+            if (cursoUpdate != null)
+            {
+                cursoUpdate.Nombre = curso.Nombre;
+                cursoUpdate.Jornada = curso.Jornada;
+                cursoUpdate.Dirección = curso.Dirección;
+                _context.Cursos.Update(cursoUpdate);
+                _context.SaveChanges();
+                return RedirectToAction("MultiCurso","Curso");
+            }
+            else
+            {
+                return View(curso);
+            }
+        }
+        else
+        {
+            return View(curso);
+        }
+    }
+    public IActionResult Delete(string id)
+    {
+        ViewBag.Fecha = DateTime.Now;
+        _context.Cursos.Remove(_context.Cursos.Find(id));
+        _context.SaveChanges();
+        return View("MultiCurso",_context.Cursos.ToList());
+    }
+
     public CursoController(EscuelaContext context)
     {
         _context = context;
