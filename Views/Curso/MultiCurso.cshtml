@@ -9,10 +9,10 @@
 <div class="d-flex justify-content-end mb-5 mr-2">
     @Html.ActionLink("Agregar", "Create", "Curso", null, new {@class = "btn btn-success"})
 </div>
-<table class="table table-dark table-hover">
+<table class="table table-dark table-hover table-striped table-bordered dt-responsive nowrap" width="100%">
     <thead>
         <tr>
-            <th class="text-center" scope="col">#</th>
+            @* <th class="text-center" scope="col">#</th> *@
             <th class="text-center" scope="col">Nombre</th>
             <th class="text-center" scope="col">Dirección</th>
             <th class="text-center" scope="col">Jornada</th>
@@ -24,7 +24,7 @@
         {
             index++;
             <tr>
-                <td class="text-center">@index</td>
+                @* <td class="text-center">@index</td> *@
                 <td class="text-center">@obj.Nombre</td>
                 <td class="text-center">@obj.Dirección</td>
                 <td class="text-center">@obj.Jornada</td>

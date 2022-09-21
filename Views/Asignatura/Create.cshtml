@@ -1,4 +1,5 @@
 @model Asignatura
+@using Microsoft.AspNetCore.Mvc.Rendering;
 @{
     ViewData["Title"] = "Creación de una Asignatura";
     Layout = "simple";
@@ -17,7 +18,7 @@
         </div>
         <div class="d-flex justify-content-center m-5">
             <input class=" btn btn-primary btn-lg mr-5" type="submit" value="Crear"/>
-            @Html.ActionLink("Regresar", "MultiAsignatura", "Curso", null , new {@class = "btn btn-secondary btn-lg"})
+            @Html.ActionLink("Regresar", "MultiAsignatura", "Asignatura", null , new {@class = "btn btn-secondary btn-lg"})
         </div>
     </form>
 </div>

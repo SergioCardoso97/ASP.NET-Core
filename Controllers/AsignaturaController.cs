@@ -31,6 +31,12 @@ public class  AsignaturaController: Controller
     {
         ViewBag.CosaDinamica = "La Monja";
         ViewBag.Fecha = DateTime.Now;
+        List<SelectListItem> lst = new List<SelectListItem>();
+        foreach (var curso in _context.Cursos)
+        {
+            lst.Add(new SelectListItem() { Text = curso.Nombre, Value = curso.Id });
+        }
+        ViewBag.Cursos = lst;
         return View(_context.Asignaturas.ToList());
     }
      public IActionResult Create()
@@ -51,7 +57,7 @@ public class  AsignaturaController: Controller
         if (ModelState.IsValid)
         {
             asignatura.Id = Guid.NewGuid().ToString();
-            asignatura.CursoId = asignatura.CursoId.ToString();
+            asignatura.CursoId = asignatura.CursoId;
             _context.Asignaturas.Add(asignatura);
             _context.SaveChanges();
             return RedirectToAction("MultiAsignatura","Asignatura");
@@ -106,7 +112,7 @@ public class  AsignaturaController: Controller
         ViewBag.Fecha = DateTime.Now;
         _context.Asignaturas.Remove(_context.Asignaturas.Find(id));
         _context.SaveChanges();
-        return View("MultiAsignatura",_context.Asignaturas.ToList());
+        return RedirectToAction("MultiAsignatura","Asignatura");
     }
     public AsignaturaController(EscuelaContext context)
     {

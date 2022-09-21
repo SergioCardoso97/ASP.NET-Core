@@ -89,11 +89,12 @@ namespace ASP.NET_Core.Models
                             Id = Guid.NewGuid().ToString(),
                             EscuelaId = escuela.Id,
                             Nombre = "101",
-                            Jornada = TiposJornada.Mañana },
-                        new Curso() {Id = Guid.NewGuid().ToString(), EscuelaId = escuela.Id, Nombre = "201", Jornada = TiposJornada.Mañana},
-                        new Curso   {Id = Guid.NewGuid().ToString(), EscuelaId = escuela.Id, Nombre = "301", Jornada = TiposJornada.Mañana},
-                        new Curso() {Id = Guid.NewGuid().ToString(), EscuelaId = escuela.Id, Nombre = "401", Jornada = TiposJornada.Tarde },
-                        new Curso() {Id = Guid.NewGuid().ToString(), EscuelaId = escuela.Id, Nombre = "501", Jornada = TiposJornada.Tarde},
+                            Jornada = TiposJornada.Mañana,
+                            Dirección = "Salon 1" },
+                        new Curso() {Id = Guid.NewGuid().ToString(), EscuelaId = escuela.Id, Nombre = "201", Jornada = TiposJornada.Mañana, Dirección = "Salon 2"},
+                        new Curso   {Id = Guid.NewGuid().ToString(), EscuelaId = escuela.Id, Nombre = "301", Jornada = TiposJornada.Mañana, Dirección = "Salon 3"},
+                        new Curso() {Id = Guid.NewGuid().ToString(), EscuelaId = escuela.Id, Nombre = "401", Jornada = TiposJornada.Tarde, Dirección = "Salon 4" },
+                        new Curso() {Id = Guid.NewGuid().ToString(), EscuelaId = escuela.Id, Nombre = "501", Jornada = TiposJornada.Tarde, Dirección = "Salon 5"},
             };
         }
 
@@ -102,15 +103,19 @@ namespace ASP.NET_Core.Models
             string[] nombre1 = { "Alba", "Felipa", "Eusebio", "Farid", "Donald", "Alvaro", "Nicolás" };
             string[] apellido1 = { "Ruiz", "Sarmiento", "Uribe", "Maduro", "Trump", "Toledo", "Herrera" };
             string[] nombre2 = { "Freddy", "Anabel", "Rick", "Murty", "Silvana", "Diomedes", "Nicomedes", "Teodoro" };
-
+            string[] generos = {"Masculino", "Femenino"};
+            Random rnd = new Random();
             var listaAlumnos = from n1 in nombre1
                                from n2 in nombre2
                                from a1 in apellido1
+                               from e1 in generos
                                select new Alumno
                                {
                                    CursoId = curso.Id,
                                    Nombre = $"{n1} {n2} {a1}",
-                                   Id = Guid.NewGuid().ToString()
+                                   Id = Guid.NewGuid().ToString(),
+                                   Sexo = e1,
+                                   Edad = rnd.Next(6,12).ToString()
                                };
 
             return listaAlumnos.OrderBy((al) => al.Id).Take(cantidad).ToList();

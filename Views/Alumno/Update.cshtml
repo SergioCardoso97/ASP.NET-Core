@@ -1,0 +1,37 @@
+@model Alumno
+@{
+    ViewData["Title"] = "Actualización de un Alumno";
+    Layout = "simple";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="d-flex justify-content-center" asp-validation-summary="All">
+    <form method="POST" class="col-8">
+        <div class="d-flex flex-column justify-content-center m-2">
+            <label asp-for="Nombre">Nombre del Alumno</label>
+            @Html.TextBox("Nombre",@Model.Nombre, new { @class = "form-control",@placeholder = "Ingresa el nombre" })
+        </div>
+        <div class="d-flex flex-column justify-content-center m-2">
+            <label class="control-label">Selecciona el Genero</label>
+        </div>
+         <div class="d-flex justify-content-center">
+            <label class="control-label ">Masculino</label>
+            @Html.RadioButtonFor(model => model.Sexo, "Masculino", htmlAttributes: new { @class = "form-control" })
+            <label class="control-label ">Femenino</label>
+            @Html.RadioButtonFor(model => model.Sexo, "Femenino", htmlAttributes: new { @class = "form-control"})  
+        </div>
+         <div class="d-flex flex-column justify-content-center m-2">
+            <label asp-for="Edad">Edad del Alumno</label>
+            @Html.TextBox("Edad",@Model.Edad, new { @class = "form-control",@placeholder = "Ingresa la edad" })
+        </div>
+        <div class="d-flex flex-column justify-content-center m-2">
+            <label asp-for="Curso"></label>
+            @Html.DropDownListFor(x=>x.CursoId, (IEnumerable<SelectListItem>)ViewData["Cursos"], "Selecciona un curso",new {@class = "form-control"})
+        </div>
+        <div class="d-flex justify-content-center m-5">
+            <input class=" btn btn-primary btn-lg mr-5" type="submit" value="Actualizar"/>
+            @Html.ActionLink("Regresar", "MultiAlumno", "Alumno", null , new {@class = "btn btn-secondary btn-lg"})
+        </div>
+    </form>
+</div>
+<p class="text-center"><i>@ViewData["Fecha"]</i></p>
