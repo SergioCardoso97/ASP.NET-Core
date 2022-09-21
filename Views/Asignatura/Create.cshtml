@@ -1,0 +1,24 @@
+@model Asignatura
+@{
+    ViewData["Title"] = "Creación de una Asignatura";
+    Layout = "simple";
+}
+
+<h1 class="text-center">@ViewData["Title"]</h1>
+<div class="d-flex justify-content-center">
+    <form method="POST" class="col-8">
+        <div class="d-flex flex-column justify-content-center m-2">
+            <label asp-for="Nombre"></label>
+            @Html.TextBox("Nombre",null, new { @class = "form-control",@placeholder = "Ingresa el nombre" })
+        </div>
+        <div class="d-flex flex-column justify-content-center m-2">
+            <label asp-for="Curso"></label>
+            @Html.DropDownListFor(x=>x.CursoId, (IEnumerable<SelectListItem>)ViewData["Cursos"], "Selecciona un curso",new {@class = "form-control"})
+        </div>
+        <div class="d-flex justify-content-center m-5">
+            <input class=" btn btn-primary btn-lg mr-5" type="submit" value="Crear"/>
+            @Html.ActionLink("Regresar", "MultiAsignatura", "Curso", null , new {@class = "btn btn-secondary btn-lg"})
+        </div>
+    </form>
+</div>
+<p class="text-center"><i>@ViewData["Fecha"]</i></p>
