@@ -4,7 +4,9 @@ var builder = WebApplication.CreateBuilder(args);
 
 // Add services to the container.
 builder.Services.AddControllersWithViews();
-builder.Services.AddDbContext<EscuelaContext>(options => options.UseInMemoryDatabase("testDB"));
+//builder.Services.AddDbContext<EscuelaContext>(options => options.UseInMemoryDatabase("testDB"));
+string connString = builder.Configuration.GetConnectionString("DefaultConnectionString");
+builder.Services.AddDbContext<EscuelaContext>(options => options.UseSqlServer(connString));
 var app = builder.Build();
 using(var scope=app.Services.CreateScope()){
     var serv=scope.ServiceProvider;
